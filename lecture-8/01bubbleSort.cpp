@@ -16,7 +16,7 @@ void bubbleSort(int arr[], int n){
             count++;
             if(arr[j] > arr[j+1]){
                 swap(arr[j], arr[j+1]);
-                flag = false;
+                flag = true;
             }
         }
         if(flag == false){

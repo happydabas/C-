@@ -4,21 +4,21 @@ using namespace std;
 
 // time : O(logn)
 
-int lowerBound(int arr[], int n, int t) {
+int upperBound(int arr[], int n, int t) {
 
 	int s = 0;
 	int e = n - 1;
 
-	int ans = -1; // to track the index of the 1st occ. of 't' in arr[]
+	int ans = -1; // to track the index of the last occ. of 't' in arr[]
 
 	while (s <= e) {
 
 		int m = s + (e - s) / 2;
 		if (arr[m] == t) {
-			// save m and go towards the left of midpoint as there may
+			// save m and go towards the right of midpoint as there may
 			// be more occurrence of t
 			ans = m;
-			e = m - 1;
+			s = m + 1;
 		} else if (t > arr[m]) {
 			// go towards the right of midpoint to search t
 			// i.e. reduce the search space from [s, e] to [m+1, e]
@@ -41,9 +41,9 @@ int main() {
 	int arr[] = {10, 10, 10, 20, 20, 20, 20, 20, 30, 30, 30};
 	int n = sizeof(arr) / sizeof(int);
 
-	int t = 100;
+	int t = 20;
 
-	cout << lowerBound(arr, n, t) << endl;
+	cout << upperBound(arr, n, t) << endl;
 
 	return 0;
 }

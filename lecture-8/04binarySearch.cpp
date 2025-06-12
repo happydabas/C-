@@ -6,11 +6,11 @@ int binarySearch(int arr[], int n, int t){ // ----------> incompleeeeeeeeeeeeeee
     int e = n-1;
 
 while( s <= e){
-    int m = s + (e-s)/2;
-
-    int m = (s + e) / 2;
+    // int m = (s + e) / 2; // this is the midpoint of the search space [s, e]
+    int m = s + (e-s)/2; // to avoid overflow in case of large values of s and e
     if(arr[m] == t){
         // you have found target at index 'm'
+        return m;
     }
     else{
         if(t > arr[m]){
@@ -27,10 +27,11 @@ while( s <= e){
 
         }
     }
-    //'t' is not present in arr[]
-    return -1;
+    
 
 }
+//'t' is not present in arr[]
+return -1;
 }
 
 int main(){
@@ -38,7 +39,7 @@ int main(){
     int arr[] = {10, 20, 30, 40, 50, 60, 70};
     int n = sizeof(arr) / sizeof(int);
 
-    int t = 20;
+    int t = 30;
 
     cout << binarySearch(arr, n, t) << endl;
 
